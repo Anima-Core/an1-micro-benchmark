@@ -73,6 +73,26 @@ where `<mode>` is the value of `AN1_EXPECTED_MODE` if set, otherwise `"run"`.
 
 ---
 
+## Requesting an API Key
+
+To request a benchmark API key, email: support@animacore.ai
+
+Include:
+- Full name, company, role
+- Intended use (evaluation, pilot, internal testing)
+- Estimated request volume (rough)
+- Desired time window (start date, end date)
+
+You will receive:
+- AN1_API_URL
+- AN1_API_KEY
+- Any usage limits (if applicable)
+
+Security note:
+Do not commit API keys to git. Set them as environment variables only.
+
+---
+
 ## Configuration
 
 ### Required Environment Variables
@@ -291,3 +311,4 @@ All errors are recorded in the results CSV and do not cause the benchmark to cra
 ## License
 
 MIT License. See the LICENSE file for details.
+
