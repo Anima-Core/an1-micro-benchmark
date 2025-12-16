@@ -7,7 +7,7 @@ This tool treats AN1 strictly as a **black box** and makes no assumptions about 
 
 ## Overview
 
-This benchmark suite executes a fixed set of inference requests against the AN1 API and captures **externally observable metrics** only:
+This benchmark suite executes a fixed set of stateless inference requests against the AN1 API and captures **externally observable metrics** only:
 
 - Request latency (mean, P50, P95)
 - Cost metrics (reference baseline cost, AN1 cost, savings)
@@ -68,7 +68,7 @@ python -m bench.run_bench
 
 ### 5. View Summary
 
-Results are written to `out/summary_<mode>.json` and `out/results_<mode>.csv` (where `<mode>` is the value of `AN1_EXPECTED_MODE` if set, otherwise `run`).
+Results are written to `out/summary_<>.json` and `out/results_<>.csv` (where `<>` is the value of `AN1_EXPECTED_` if set, otherwise `run`).
 
 ---
 
@@ -86,9 +86,9 @@ Results are written to `out/summary_<mode>.json` and `out/results_<mode>.csv` (w
 
 ### Optional Environment Variables
 
-- **`AN1_EXPECTED_MODE`**  
-  Optional label for output files and mode validation  
-  If set, the benchmark warns if the API response mode does not match
+- **`AN1_EXPECTED_`**  
+  Optional label for output files and  validation  
+  If set, the benchmark warns if the API response  does not match
 
 - **`AN1_NUM_REQUESTS`**  
   Limit the number of requests processed  
@@ -104,13 +104,13 @@ Results are written to `out/summary_<mode>.json` and `out/results_<mode>.csv` (w
 
 ### Request Format
 
-The benchmark uses `infer_z` mode exclusively. This mode is supported in all backend configurations and provides deterministic, reproducible results.
+The benchmark uses infer_z  to ensure portability across deployments, including environments where text-based inference is disabled or gated.
 
 **Request payload:**
 
 ```json
 {
-  "mode": "infer_z",
+  "": "infer_z",
   "z": [256 floating point values]
 }
 ```
@@ -120,7 +120,7 @@ The benchmark uses `infer_z` mode exclusively. This mode is supported in all bac
 - Values are typically in range [-1.0, 1.0]
 - The harness automatically generates deterministic z vectors from text inputs
 
-**Note:** The API may also support `infer_text` mode in some deployments, but this benchmark uses `infer_z` for consistency and reproducibility.
+**Note:** The API may also support `infer_text`  in some deployments, but this benchmark uses `infer_z` for consistency and reproducibility.
 
 ### Response Format
 
@@ -129,7 +129,7 @@ The API returns a JSON object with the following structure:
 ```json
 {
   "ok": true,
-  "mode": "infer",
+  "": "infer",
   "backend": "local",
   "version": "0.1.2",
   "latency_ms": 50,
@@ -139,7 +139,7 @@ The API returns a JSON object with the following structure:
 }
 ```
 
-**Note:** The `mode` and `backend` fields are deployment-specific and may vary (e.g. `an1_active`, `baseline_only`). The benchmark records these values but does not interpret them.
+**Note:** The `mode` and `backend` fields are deployment-specific and may vary between benchmark runs (e.g. `an1_active`, `baseline_only`). The benchmark records these values but does not interpret them.
 
 The benchmark extracts and aggregates these values without making any assumptions about how they are produced.
 
@@ -287,3 +287,4 @@ All errors are recorded in the results CSV and do not cause the benchmark to cra
 ## License
 
 MIT License. See the LICENSE file for details.
+
